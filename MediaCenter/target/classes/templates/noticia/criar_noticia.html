@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+   <meta charset="utf-8"/>
+   <meta name="viewport" content="width=device-width, user-scalable=no"/>
+    <title>Pagina Inicial</title>
+    <link href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="_fontes/font-awesome-4.2.0/css/font-awesome.min.css"/>
+    <link th:href="@{/css/CriarNoticia.css}" href="/css/CriarNoticia.css"  rel="stylesheet" type="text/css"  />
+</head>
+
+<body>
+    <nav id="menu">
+        <ul>
+            <li><a href="Pag-Inicial.html"> Home</a></li>
+            <li><a href="#"> Esportes</a></li>
+            <li><a href="#"> Gerais</a></li>
+            <li><a href="#"> Tecnologia</a></li>
+            <li><a href="#"> Mais Lidas</a></li>
+        </ul>
+    </nav>
+    
+    <div id="noticia">
+        <form method="post" action=""> 
+          <h1>Nova Noticia</h1><br></br> 
+           
+          <p> 
+            <label for="titulo_noticia">Titulo da noticia</label><br></br>
+            <input id="titulo_noticia" name="titulo_noticia" required="required" type="text" placeholder="Titulo da Noticia" />
+          </p><br></br>
+           
+          <p> 
+            <label for="categoria">Selecione a categoria da noticia</label><br></br>
+	             <ul>
+	               <th:block th:each="categoria : ${categorias}">
+	                <input type="checkbox" name="cers" th:value="${categoria.categoriaId}"/>
+	                 <label th:text="${categoria.descricao}"></label>
+	               </th:block>
+	             </ul>
+          </p><br></br>
+           
+          <p> 
+            <label for="descricao">Descrição da noticia</label><br></br>
+            <textarea rows="10" cols="110" maxlength="999" placeholder="Conteudo da sua noticia" required="required"></textarea>
+          </p><br></br>
+            
+          <p> 
+            <label for="tags">TAGS</label><br></br>
+            <textarea rows="10" cols="70" maxlength="999" placeholder="Digite as tags relacinadas a sua noticia" required="required">
+            	<th:block th:each="item : ${tags}">
+	                 <th:block th:text="${item.nome}"/>
+	            </th:block>
+            
+            </textarea>          
+          </p><br></br>
+            
+          <p> 
+            <label for="autor">Biografia do autor</label><br></br>
+            <textarea rows="10" cols="70" maxlength="999" placeholder="Diga sobre sua biografia" required="required"></textarea>          
+          </p><br></br>
+          <p> 
+            <input type="submit" value="Enviar Noticia"/> 
+          </p>
+        </form>
+    </div>
+</body>   
+    
+</html>
